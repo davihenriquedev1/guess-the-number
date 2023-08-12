@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+body {
+    background-color: #416b5e;
+}
+.general { 
+    height:100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+}
+.result-area {
+    font-size: 50px;
+    height: 100%;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    flex: 1;
+}
+#title-res {
+    color: #7fff00;
+    font-weight: bold;
+    padding: 20px;
+}
+#msg-res {
+    color: #ffffff;
+}
+.restart {
+    margin: 20px;
+    padding: 10px;
+    background-color: #003d47;
+    font-weight: bold;
+    color: #ffffff;
+}
+.game-area {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex: 0.33333;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.title-box {
+    text-align: center;
+    color:#ffffff;
+    padding: 20px;
+}
+
+.number-card{
+    background-color: #000000fa;
+    width: 320px;
+    height: 200px;
+    margin-top: 40px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.number{
+    font-size: 50px;
+    font-weight: bold;
+    color: #7fff00;
+}
+#clue.clue-default{
+    width: 320px;
+    padding:20px 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+}
+#clue.alerta {
+    background-color: #ffefef;
+    color: #ff0000;
+}
+#input-number-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#input-number {
+    width: 100px;
+    height: 24px;
+    padding: 10px;
+    text-align: center;
+    outline: 0;
+}
+#input-number:focus {
+    background-color: #e0e0e0;
+}
+#input-number::-webkit-inner-spin-button { 
+    appearance: none;
+}
+#submit-box {
+    padding: 20px;
+}
+#submit-number {
+    padding: 14px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: #7fffd4;
+    font-weight: bold;
+}
+.info-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: end;
+    flex:0.33333;
+    height: 100%;
+    padding: 10px 0px 10px 10px;
+}
+#round{
+    width: 130px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #000000;
+    border-radius: 20px 0px 0px 0px;
+    color: #00ffb3;
+}
+#guess {
+    background-color: rgb(29, 29, 29);
+    color: #cecbff;
+    overflow-y: scroll;
+    width: 130px;
+    padding: 10px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px 0px 0px 20px;
+}
+#guess::-webkit-scrollbar {
+    width: 8px;
+}
+#guess::-webkit-scrollbar-track {
+    background-color: #272727;
+}
+#guess::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 10px;
+}
+.guess-number {
+    text-align: center;
+    color: #7fff00;
+    padding: 10px;
+    font-weight: bold;
+}

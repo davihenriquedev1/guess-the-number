@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe o Número</title>
+    <link rel="stylesheet" href="assets/css/globals.css">
+</head>
+<body>
+    <main class="general">
+        <div class="result-area">
+            <div class="number-card">
+                <div class="number">?</div>
+            </div>
+            <div id="title-res"></div>
+            <div id="msg-res"></div>
+            <button class="restart">Reiniciar</button>
+        </div>
+        <div class="game-area">
+            <div class="title-box">
+                <h1>ADIVINHE O NÚMERO</h1>
+            </div>
+            <div class="number-card">
+                <div class="number">?</div>
+            </div>
+            <div id="input-number-area">
+                <label id="clue" for="input-number" class="clue-default">
+                    <p>Digite um Número de 1 a 100</p>
+                </label>
+                <div id="input-number-box">
+                    <input type="text" placeholder="000" id="input-number" maxlength="3">
+                </div>
+                <div id="submit-box">
+                    <button class="restart">Reiniciar</button>
+                    <input type="submit" id="submit-number" value="confirmar">
+                </div>
+            </div>
+        </div>
+        <div class="info-area">
+            <div id="round">
+                <p></p>
+            </div>
+            <div id="guess">
+                <h3>Palpites</h3>
+            </div>
+        </div>
+    </main>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
