@@ -34,6 +34,7 @@ isANumber.
 4. O jogador pode optar por reiniciar o jogo clicando no botão "Reiniciar".
 
 ### Acesse a página aqui:
+https://davihenriquelima.github.io/guess-the-number/
 
 
 
