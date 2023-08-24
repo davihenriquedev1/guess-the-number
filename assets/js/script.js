@@ -14,6 +14,7 @@ let titleRes = document.querySelector('#title-res');
 let msgRes = document.querySelector('#msg-res');
 let numberCardGame = document.querySelector('.game-area .number-card .number');
 let restart = document.querySelector('.restart');
+let restart1 = document.querySelector('.restart1');
 let alerta = document.querySelector('#clue');
 roundEl.innerHTML = `Tentativa ${round.toString()}`;
 function isANumber(n) {

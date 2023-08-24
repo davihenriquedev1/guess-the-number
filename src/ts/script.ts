@@ -17,6 +17,7 @@ let titleRes = document.querySelector('#title-res') as HTMLDivElement;
 let msgRes = document.querySelector('#msg-res') as HTMLDivElement;
 let numberCardGame = document.querySelector('.game-area .number-card .number') as HTMLDivElement;
 let restart = document.querySelector('.restart') as HTMLButtonElement;
+let restart1 = document.querySelector('.restart1') as HTMLButtonElement;
 let alerta = document.querySelector('#clue') as HTMLLabelElement;
 
 roundEl.innerHTML = `Tentativa ${round.toString()}`;
