@@ -91,3 +91,6 @@ submit.addEventListener('click', guess);
 restart.addEventListener('click', ()=> {
     location.reload();
 })
+restart1.addEventListener('click', ()=> {
+    location.reload();
+})
