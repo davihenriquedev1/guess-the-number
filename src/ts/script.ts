@@ -1,12 +1,13 @@
 //variáveis globais
 let random = Math.floor(Math.random()*100 +1); //gerando número aleatório
-let round = 1; //iniciando o número de tentativas
-let currentGuess = 0; //variável que armazenará o palpite atualpara preencher na tela e verificar se igual a "random"
+let round = 1; // variável de controle do número de tentativas
+let currentGuess = 0; //variável que armazenará o palpite atual para preencher na tela e verificar se igual a "random"
 
 
 //elementos
 let roundEl = document.querySelector('#round') as HTMLDivElement;
-let guessEL = document.querySelector('#guess') as HTMLDivElement;
+let guessArea = document.querySelector('#guess-area') as HTMLDivElement;
+let guessBox = document.querySelector('#guess-box') as HTMLDivElement;
 let input = document.querySelector('#input-number') as HTMLInputElement;
 let submit = document.querySelector('#submit-number') as HTMLInputElement;
 let gameArea = document.querySelector('.game-area') as HTMLDivElement;
@@ -16,8 +17,7 @@ let resultNumber = document.querySelector('.result-area .number') as HTMLDivElem
 let titleRes = document.querySelector('#title-res') as HTMLDivElement;
 let msgRes = document.querySelector('#msg-res') as HTMLDivElement;
 let numberCardGame = document.querySelector('.game-area .number-card .number') as HTMLDivElement;
-let restart = document.querySelector('.restart') as HTMLButtonElement;
-let restart1 = document.querySelector('.restart1') as HTMLButtonElement;
+let restartButtons = document.querySelectorAll('.restart') as NodeList;
 let alerta = document.querySelector('#clue') as HTMLLabelElement;
 
 roundEl.innerHTML = `Tentativa ${round.toString()}`;
@@ -38,7 +38,7 @@ function guess() {
             let guessP = document.createElement('p') as HTMLParagraphElement ;
             guessP.classList.add('guess-number');
             guessP.innerHTML = currentGuess.toString();
-            guessEL.appendChild(guessP);
+            guessBox.appendChild(guessP);
     
             if(currentGuess === random) {
                 gameArea.style.display = 'none';
@@ -56,9 +56,7 @@ function guess() {
                 roundEl.innerHTML = `Tentativa ${round.toString()}`;
                 
                 input.value = '';
-    
-                alerta.classList.remove('alerta');
-    
+        
             } else if (currentGuess !== random && round>=10) {
                 gameArea.style.display = 'none';
                 infoArea.style.display = 'none';
@@ -71,9 +69,9 @@ function guess() {
     
                 input.value = '';
     
-                alerta.classList.remove('alerta');
             }
-    
+            alerta.classList.remove('alerta');
+
         } else {
             alerta.classList.add('alerta');
             
@@ -87,10 +85,27 @@ function guess() {
 
 }
 
+function handleRestart() {
+    
+    resultNumber.innerHTML = '';
+    titleRes.innerHTML = '';
+    msgRes.innerHTML = '';
+    resultArea.style.display = 'none';
+
+    round = 1
+    roundEl.innerHTML = `Tentativa ${round.toString()}`;
+    numberCardGame.innerHTML = '?';
+    gameArea.style.display = 'flex';
+    infoArea.style.display = 'flex';
+
+    guessBox.innerHTML = ''
+
+    random = Math.floor(Math.random()*100 +1)
+
+    input.value = '';
+}
+
 submit.addEventListener('click', guess);
-restart.addEventListener('click', ()=> {
-    location.reload();
-})
-restart1.addEventListener('click', ()=> {
-    location.reload();
+restartButtons.forEach( button => {
+    button.addEventListener('click', handleRestart)
 })
