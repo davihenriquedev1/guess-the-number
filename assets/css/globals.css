@@ -9,7 +9,7 @@
 }
 
 body {
-    background: #ffffff url(/assets/images/fundo.jpg) no-repeat top left fixed;
+    background: #ffffff url('/assets/images/fundo.jpg') no-repeat top left fixed;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     overflow-x: hidden;
     height: auto;
@@ -43,7 +43,7 @@ body {
     border-radius: 5px;
 }
 .general { 
-    height:100vh;
+    min-height:100vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -217,6 +217,7 @@ body {
     font-weight: bold;
 }
 footer {
+    position: relative;
     min-height: 70px;
     background-color: #00021d;
     display: flex;
