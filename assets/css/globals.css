@@ -10,6 +10,7 @@
 
 body {
     background: #ffffff url('../images/fundo.jpg') no-repeat top left fixed;
+    background-size: cover;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     overflow-x: hidden;
     height: auto;
