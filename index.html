@@ -8,45 +8,57 @@
     <link rel="stylesheet" href="assets/css/globals.css">
 </head>
 <body>
+    <div id="initial">
+        <div class="title-box">
+            <h1>ADIVINHE O NÚMERO</h1>
+        </div>
+        <div>
+            <button class="start">LET's GO</button>
+        </div>
+    </div>
     <main class="general">
         <div class="result-area">
-            <div class="number-card">
-                <div class="number">?</div>
-            </div>
-            <div id="title-res"></div>
-            <div id="msg-res"></div>
-            <button class="restart">Reiniciar</button>
-        </div>
-        <div class="game-area">
-            <div class="title-box">
-                <h1>ADIVINHE O NÚMERO</h1>
-            </div>
-            <div class="number-card">
-                <div class="number">?</div>
-            </div>
-            <div id="input-number-area">
-                <label id="clue" for="input-number" class="clue-default">
-                    <p>Digite um Número de 1 a 100</p>
-                </label>
-                <div id="input-number-box">
-                    <input type="text" placeholder="000" id="input-number" maxlength="3">
+            <div class="result-box">
+                <div class="number-card">
+                    <div class="number">?</div>
                 </div>
-                <div id="submit-box">
-                    <button class="restart">Reiniciar</button>
-                    <input type="submit" id="submit-number" value="confirmar">
-                </div>
+                <div id="title-res"></div>
+                <div id="msg-res"></div>
+                <button class="start">Reiniciar</button>
             </div>
         </div>
         <div class="info-area">
             <div id="round">
                 
             </div>
+            <div id="guess-title"><h3>Palpites</h3></div>
             <div id="guess-area">
-                <h3>Palpites</h3>
                 <div id="guess-box"></div>
             </div>
         </div>
+        <div class="game-area">
+            <div class="number-card">
+                <div class="number">?</div>
+            </div>
+            <div id="input-number-area">
+                <label id="clue" for="input-number" class="clue-default">
+                    <p>Digite um NÚMERO de 1 a 100</p>
+                    <p id="remaining-attempts--warning">(Você tem 10 Tentativas)</p>
+                </label>
+                <div id="input-number-box">
+                    <input type="text" placeholder="000" id="input-number" maxlength="3">
+                    <div id="submit-area">
+                        <input type="submit" id="submit-number" value="confirmar">
+                        <button class="start">Reiniciar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </main>
+    <footer>
+        <div><p>by Davi Lima</p></div>
+    </footer>
     <script src="assets/js/script.js"></script>
 </body>
 </html>

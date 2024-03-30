@@ -1,10 +1,12 @@
-//variáveis globais
-let random = Math.floor(Math.random()*100 +1); //gerando número aleatório
-let round = 1; // variável de controle do número de tentativas
-let currentGuess = 0; //variável que armazenará o palpite atual para preencher na tela e verificar se igual a "random"
+// Variáveis globais
+let random = 0 
+let round = 1;
+let currentGuess ;
+let remainingAttWarning = document.querySelector('#remaining-attempts--warning') as HTMLParagraphElement;
+const totalAttempts = 10;
 
-
-//elementos
+// Elementos
+let initial = document.querySelector('#initial') as HTMLDivElement
 let roundEl = document.querySelector('#round') as HTMLDivElement;
 let guessArea = document.querySelector('#guess-area') as HTMLDivElement;
 let guessBox = document.querySelector('#guess-box') as HTMLDivElement;
@@ -17,80 +19,81 @@ let resultNumber = document.querySelector('.result-area .number') as HTMLDivElem
 let titleRes = document.querySelector('#title-res') as HTMLDivElement;
 let msgRes = document.querySelector('#msg-res') as HTMLDivElement;
 let numberCardGame = document.querySelector('.game-area .number-card .number') as HTMLDivElement;
-let restartButtons = document.querySelectorAll('.restart') as NodeList;
+let startButtons = document.querySelectorAll('.start') as NodeList;
 let alerta = document.querySelector('#clue') as HTMLLabelElement;
 
-roundEl.innerHTML = `Tentativa ${round.toString()}`;
-
 //funções
+
+function genRandomNumber() {
+    random = Math.floor(Math.random()*100 +1);
+}
 
 function isANumber(n:any):boolean {
     return /^\d+$/.test(n)
 }
 
+function showResult(title:string, color:string, message:string) {
+    gameArea.style.display = 'none';
+    infoArea.style.display = 'none';
+    resultNumber.innerHTML = random.toString();
+    titleRes.innerHTML = title;
+    titleRes.style.color = color;
+    msgRes.innerHTML = message;
+    resultArea.style.display = 'flex';
+}
+
 function guess() {
 
-    if(isANumber(input.value)) {
+    currentGuess = parseInt(input.value);
 
-        currentGuess = parseInt(input.value);
+    if(currentGuess !== null && isANumber(currentGuess)) {
 
-        if(currentGuess && currentGuess > 0 && currentGuess <= 100) {
+        if(currentGuess > 0 && currentGuess <= 100) {
             let guessP = document.createElement('p') as HTMLParagraphElement ;
             guessP.classList.add('guess-number');
             guessP.innerHTML = currentGuess.toString();
             guessBox.appendChild(guessP);
     
-            if(currentGuess === random) {
-                gameArea.style.display = 'none';
-                infoArea.style.display = 'none';
-                resultNumber.innerHTML = random.toString();
-    
-                titleRes.innerHTML = 'PARABÉNS';
-                titleRes.style.color = 'chartreuse';
-                msgRes.innerHTML = `Você venceu na ${round.toString()}ª tentativa`;
-                resultArea.style.display = 'flex';
-    
-            } else if(currentGuess !== random && round<10) {
-                numberCardGame.innerHTML = 'Tente Novamente';
+            if (currentGuess !== random && round<10) {
+                numberCardGame.innerHTML = `TENTE NOVAMENTE ${currentGuess < random ? '(Mais!)':'(Menos!)'} `;
+                let remainingAttempts = totalAttempts - round;
+                remainingAttWarning.innerHTML = `Você tem ${remainingAttempts} tentativas`;
                 round++;
                 roundEl.innerHTML = `Tentativa ${round.toString()}`;
-                
-                input.value = '';
-        
-            } else if (currentGuess !== random && round>=10) {
-                gameArea.style.display = 'none';
-                infoArea.style.display = 'none';
-    
-                resultNumber.innerHTML = random.toString();
-                titleRes.innerHTML = 'QUE PENA';
-                titleRes.style.color = 'red';
-                msgRes.innerHTML = `Você perdeu a ${round.toString()}ª e última tentativa`;
-                resultArea.style.display = 'flex';
-    
-                input.value = '';
-    
+
+            } else if (currentGuess === random) {
+                showResult('PARABÉNS', 'chartreuse', `Você venceu na ${round}ª tentativa`);
+
+            } else if (currentGuess !== random && round >= 10) {
+                showResult('QUE PENA', 'red', `Você perdeu a ${round}ª e última tentativa`);
             }
+
+            input.value = '';
             alerta.classList.remove('alerta');
 
         } else {
             alerta.classList.add('alerta');
-            
             input.value = '';
         }
     } else {
         alerta.classList.add('alerta');
-        
         input.value = '';
     }
 
 }
 
-function handleRestart() {
-    
+function handleStart() {
+    initial.style.display = 'none';
+    resultArea.style.display = 'none';
+    alerta.classList.remove('alerta');
     resultNumber.innerHTML = '';
     titleRes.innerHTML = '';
     msgRes.innerHTML = '';
-    resultArea.style.display = 'none';
+
+    remainingAttWarning.innerHTML = `Você tem ${totalAttempts} tentativas`;
+    
+    guessBox.innerHTML = ''
+    input.value = '';
 
     round = 1
     roundEl.innerHTML = `Tentativa ${round.toString()}`;
@@ -98,14 +101,11 @@ function handleRestart() {
     gameArea.style.display = 'flex';
     infoArea.style.display = 'flex';
 
-    guessBox.innerHTML = ''
-
-    random = Math.floor(Math.random()*100 +1)
-
-    input.value = '';
+    genRandomNumber();
 }
 
 submit.addEventListener('click', guess);
-restartButtons.forEach( button => {
-    button.addEventListener('click', handleRestart)
+
+startButtons.forEach( button => {
+    button.addEventListener('click', handleStart)
 })

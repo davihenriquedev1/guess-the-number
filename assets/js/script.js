@@ -1,7 +1,10 @@
 "use strict";
-let random = Math.floor(Math.random() * 100 + 1);
+let random = 0;
 let round = 1;
-let currentGuess = 0;
+let currentGuess;
+let remainingAttWarning = document.querySelector('#remaining-attempts--warning');
+const totalAttempts = 10;
+let initial = document.querySelector('#initial');
 let roundEl = document.querySelector('#round');
 let guessArea = document.querySelector('#guess-area');
 let guessBox = document.querySelector('#guess-box');
@@ -14,45 +17,45 @@ let resultNumber = document.querySelector('.result-area .number');
 let titleRes = document.querySelector('#title-res');
 let msgRes = document.querySelector('#msg-res');
 let numberCardGame = document.querySelector('.game-area .number-card .number');
-let restartButtons = document.querySelectorAll('.restart');
+let startButtons = document.querySelectorAll('.start');
 let alerta = document.querySelector('#clue');
-roundEl.innerHTML = `Tentativa ${round.toString()}`;
+function genRandomNumber() {
+    random = Math.floor(Math.random() * 100 + 1);
+}
 function isANumber(n) {
     return /^\d+$/.test(n);
 }
+function showResult(title, color, message) {
+    gameArea.style.display = 'none';
+    infoArea.style.display = 'none';
+    resultNumber.innerHTML = random.toString();
+    titleRes.innerHTML = title;
+    titleRes.style.color = color;
+    msgRes.innerHTML = message;
+    resultArea.style.display = 'flex';
+}
 function guess() {
-    if (isANumber(input.value)) {
-        currentGuess = parseInt(input.value);
-        if (currentGuess && currentGuess > 0 && currentGuess <= 100) {
+    currentGuess = parseInt(input.value);
+    if (currentGuess !== null && isANumber(currentGuess)) {
+        if (currentGuess > 0 && currentGuess <= 100) {
             let guessP = document.createElement('p');
             guessP.classList.add('guess-number');
             guessP.innerHTML = currentGuess.toString();
             guessBox.appendChild(guessP);
-            if (currentGuess === random) {
-                gameArea.style.display = 'none';
-                infoArea.style.display = 'none';
-                resultNumber.innerHTML = random.toString();
-                titleRes.innerHTML = 'PARABÉNS';
-                titleRes.style.color = 'chartreuse';
-                msgRes.innerHTML = `Você venceu na ${round.toString()}ª tentativa`;
-                resultArea.style.display = 'flex';
-            }
-            else if (currentGuess !== random && round < 10) {
-                numberCardGame.innerHTML = 'Tente Novamente';
+            if (currentGuess !== random && round < 10) {
+                numberCardGame.innerHTML = `TENTE NOVAMENTE ${currentGuess < random ? '(Mais!)' : '(Menos!)'} `;
+                let remainingAttempts = totalAttempts - round;
+                remainingAttWarning.innerHTML = `Você tem ${remainingAttempts} tentativas`;
                 round++;
                 roundEl.innerHTML = `Tentativa ${round.toString()}`;
-                input.value = '';
+            }
+            else if (currentGuess === random) {
+                showResult('PARABÉNS', 'chartreuse', `Você venceu na ${round}ª tentativa`);
             }
             else if (currentGuess !== random && round >= 10) {
-                gameArea.style.display = 'none';
-                infoArea.style.display = 'none';
-                resultNumber.innerHTML = random.toString();
-                titleRes.innerHTML = 'QUE PENA';
-                titleRes.style.color = 'red';
-                msgRes.innerHTML = `Você perdeu a ${round.toString()}ª e última tentativa`;
-                resultArea.style.display = 'flex';
-                input.value = '';
+                showResult('QUE PENA', 'red', `Você perdeu a ${round}ª e última tentativa`);
             }
+            input.value = '';
             alerta.classList.remove('alerta');
         }
         else {
@@ -65,21 +68,24 @@ function guess() {
         input.value = '';
     }
 }
-function handleRestart() {
+function handleStart() {
+    initial.style.display = 'none';
+    resultArea.style.display = 'none';
+    alerta.classList.remove('alerta');
     resultNumber.innerHTML = '';
     titleRes.innerHTML = '';
     msgRes.innerHTML = '';
-    resultArea.style.display = 'none';
+    remainingAttWarning.innerHTML = `Você tem ${totalAttempts} tentativas`;
+    guessBox.innerHTML = '';
+    input.value = '';
     round = 1;
     roundEl.innerHTML = `Tentativa ${round.toString()}`;
     numberCardGame.innerHTML = '?';
     gameArea.style.display = 'flex';
     infoArea.style.display = 'flex';
-    guessBox.innerHTML = '';
-    random = Math.floor(Math.random() * 100 + 1);
-    input.value = '';
+    genRandomNumber();
 }
 submit.addEventListener('click', guess);
-restartButtons.forEach(button => {
-    button.addEventListener('click', handleRestart);
+startButtons.forEach(button => {
+    button.addEventListener('click', handleStart);
 });
