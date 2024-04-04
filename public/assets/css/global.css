@@ -9,7 +9,7 @@
 }
 
 body {
-    background: #ffffff url('../images/fundo.jpg') no-repeat top left fixed;
+    background: #000000 url('../images/fundo.jpg') no-repeat top left fixed;
     background-size: cover;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     overflow-x: hidden;
@@ -18,7 +18,7 @@ body {
 }
 
 #initial {
-    background: linear-gradient(to right, #00041d, #000d64, #002ead) ;
+    background: linear-gradient(to right, #00041d, #000d64, #002ead);
     height: 100%;
     width: 100vw;
     display: flex;
@@ -28,13 +28,15 @@ body {
     position: fixed;
     z-index: 999;
 }
+
 .title-box {
     font-family: 'anita';
     font-size: 32px;
-    color:#ffffff;
+    color: #ffffff;
     text-align: center;
     padding: 20px;
 }
+
 #initial button {
     background-color: #ffffff;
     color: #000000;
@@ -43,21 +45,23 @@ body {
     padding: 15px;
     border-radius: 5px;
 }
-.general { 
-    min-height:100vh;
+
+.general {
+    min-height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .result-area {
     background-color: #000522;
+    color: #ffffff;
     display: none;
     position: fixed;
     align-items: center;
     width: 100%;
     height: 100%;
-    z-index: 199;
+    z-index: 888;
 }
 .result-box {
     font-size: 50px;
@@ -68,8 +72,8 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 #title-res {
-    color: #7fff00;
     font-weight: bold;
     padding: 20px;
 }
@@ -79,6 +83,7 @@ body {
     text-align: center;
     margin: 10px;
 }
+
 .game-area {
     background-color: #00093af6;
     margin: 10px;
@@ -88,8 +93,9 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.number-card{
-    background-color: #fffffffa;
+
+.number-card {
+    background-color:#ffffff;
     width: 400px;
     height: 250px;
     border-radius: 10px;
@@ -99,7 +105,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-.number{
+.number {
     color: #000000;
     font-size: 50px;
     font-weight: bold;
@@ -109,17 +115,19 @@ body {
     color: #00e5ff;
     background-color: #000000;
     max-width: 320px;
-    margin: 20px;
     padding: 20px;
+    margin: 20px;
     line-height: 30px;
     text-align: center;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
 }
 #clue.alerta {
     background-color: #ffefef;
     color: #ff0000;
 }
-#input-number-area{
+#input-number-area {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,13 +143,11 @@ body {
 #input-number:focus {
     background-color: #e0e0e0;
 }
-#input-number::-webkit-inner-spin-button { 
-    appearance: none;
-}
+
 #input-number-box {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -150,9 +156,10 @@ body {
     margin: 10px;
     border-radius: 20px;
     outline: 1px solid #000000;
-    background-color: #00e4ff;;
+    background-color: #00e4ff;
     font-weight: bold;
 }
+
 .start {
     margin: 10px;
     padding: 10px;
@@ -161,11 +168,9 @@ body {
     font-weight: bold;
     color: #ffffff;
 }
-
-#submit-number:hover, .start:hover{
+#submit-number:hover, .start:hover {
     cursor: pointer;
 }
-
 .info-area {
     display: flex;
     flex-direction: column;
@@ -173,11 +178,10 @@ body {
     position: absolute;
     right: 0;
     text-align: center;
-    justify-content: center;
     height: 100%;
     padding: 10px 0px 10px 10px;
 }
-#round{
+#round {
     width: 130px;
     padding: 10px;
     font-size: 20px;
@@ -185,15 +189,16 @@ body {
     color: #00e4ff;
     border-radius: 20px 0px 0px 0px;
 }
+
 #guess-title {
-    background-color: rgb(29, 29, 29);
+    background-color: #1d1d1d;
     color: #cecbff;
     border-bottom: 1px solid #000000c4;
     padding: 10px;
 }
 #guess-area {
     background-color: #1d1d1d;
-    overflow-y: scroll;
+    overflow-y:scroll;
     width: 130px;
     height: 300px;
     padding: 10px;
@@ -201,39 +206,41 @@ body {
     flex-direction: column;
     border-radius: 0px 0px 0px 20px;
 }
-#guess::-webkit-scrollbar {
+#guess-area::-webkit-scrollbar {
     width: 8px;
 }
-#guess::-webkit-scrollbar-track {
+#guess-area::-webkit-scrollbar-track {
     background-color: #272727;
 }
-#guess::-webkit-scrollbar-thumb {
+#guess-area::-webkit-scrollbar-thumb {
     background-color: #000000;
-    border-radius: 10px;
+    border-radius:10px;
 }
+
 .guess-number {
     text-align: center;
     color: #ff8818;
     padding: 10px;
     font-weight: bold;
 }
+
 footer {
     position: relative;
     min-height: 70px;
     background-color: #00021d;
+    color: #00e4ff;
     display: flex;
     justify-content: center;
     align-items: center;
     font-style: italic;
-    color:#00e4ff;
 }
 
-@media (max-width:850px){
+@media (max-width:850px) {
     .general {
         flex-direction: column;
         justify-content: start;
     }
-    .info-area  {
+    .info-area {
         position: relative;
         height: auto;
         width: 100vw;
@@ -243,45 +250,40 @@ footer {
     .game-area {
         margin: auto;
     }
-    #round, #guess-area  {
-        border-radius: 0;
-        width: auto;
-        height: auto;
-    }
     #guess-area {
         height: 70px;
     }
-}
-@media (max-width:538px) {
-    .game-area {
-        background-color: #00093ac7;
-        height: 100%;
-        width: 100%;
-        border-radius: 0px;
-    }
-    .number-card {
-        width: 90%;
-        margin: 10px;
-    }
-    .number {
-        font-size: 2em;
-    }
-    #input-number-area {
-        margin: 10px;
-    }
-    #input-number-box {
-        flex-direction: column;
-    }
-}
-@media (max-width:390px) {
-    .title-box {
-        font-size: 1em;
-    }
-    .game-area {
-        padding: 10px;
-    }
-    .number {
-        font-size: 2em;
+    #round, #guess-area {
+        border-radius: 0;
+        width: auto;
     }
 
+    @media (max-width:538px) {
+        .general {
+            height: 100vh;
+        }
+        .title-box {
+            font-size: 1.5em;
+        }
+        .game-area {
+            background-color: #00093ac9;
+            height: 100%;
+            width: 100%;
+            border-radius: 0;
+            margin: 0;
+        }
+        .number-card {
+            width: 90%;
+            margin: 10px;
+        }
+        .number {
+            font-size: 2em;
+        }
+        #input-number-area {
+            margin: 10px;
+        }
+        #input-number-box {
+            flex-direction: column;
+        }
+    }
 }

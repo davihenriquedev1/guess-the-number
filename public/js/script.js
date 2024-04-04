@@ -16,7 +16,7 @@ let resultArea = document.querySelector('.result-area');
 let resultNumber = document.querySelector('.result-area .number');
 let titleRes = document.querySelector('#title-res');
 let msgRes = document.querySelector('#msg-res');
-let numberCardGame = document.querySelector('.game-area .number-card .number');
+let numberCardGame = document.querySelector('.game-area .number');
 let startButtons = document.querySelectorAll('.start');
 let alerta = document.querySelector('#clue');
 function genRandomNumber() {
@@ -36,16 +36,16 @@ function showResult(title, color, message) {
 }
 function guess() {
     currentGuess = parseInt(input.value);
-    if (currentGuess !== null && isANumber(currentGuess)) {
+    if (currentGuess !== undefined && isANumber(currentGuess)) {
         if (currentGuess > 0 && currentGuess <= 100) {
             let guessP = document.createElement('p');
             guessP.classList.add('guess-number');
             guessP.innerHTML = currentGuess.toString();
             guessBox.appendChild(guessP);
             if (currentGuess !== random && round < 10) {
-                numberCardGame.innerHTML = `TENTE NOVAMENTE ${currentGuess < random ? '(Mais!)' : '(Menos!)'} `;
+                numberCardGame.innerHTML = `TENTE NOVAMENTE ${currentGuess < random ? '(Mais)' : '(Menos)'}`;
                 let remainingAttempts = totalAttempts - round;
-                remainingAttWarning.innerHTML = `Você tem ${remainingAttempts} tentativas`;
+                remainingAttWarning.innerHTML = `(Você tem ${remainingAttempts} tentativa${remainingAttempts === 1 ? '' : 's'})`;
                 round++;
                 roundEl.innerHTML = `Tentativa ${round.toString()}`;
             }
@@ -53,7 +53,7 @@ function guess() {
                 showResult('PARABÉNS', 'chartreuse', `Você venceu na ${round}ª tentativa`);
             }
             else if (currentGuess !== random && round >= 10) {
-                showResult('QUE PENA', 'red', `Você perdeu a ${round}ª e última tentativa`);
+                showResult('QUE PENA', 'red', `Você perdeu na ${round}ª tentativa`);
             }
             input.value = '';
             alerta.classList.remove('alerta');
@@ -75,7 +75,7 @@ function handleStart() {
     resultNumber.innerHTML = '';
     titleRes.innerHTML = '';
     msgRes.innerHTML = '';
-    remainingAttWarning.innerHTML = `Você tem ${totalAttempts} tentativas`;
+    remainingAttWarning.innerHTML = `(Você tem ${totalAttempts} tentativas)`;
     guessBox.innerHTML = '';
     input.value = '';
     round = 1;
