@@ -9,6 +9,9 @@ const totalAttempts = 10;
 // Elementos as serem manipulados
 
 let initial = document.querySelector('#initial') as HTMLDivElement;
+let initialButtonsArea = document.querySelector('#initial-buttons-area') as HTMLDivElement;
+let titleBox = document.querySelector('#title-box') as HTMLDivElement;
+let initialButtons = document.querySelector('#initial-buttons') as HTMLDivElement;
 let roundEl = document.querySelector('#round') as HTMLDivElement;
 let guessArea = document.querySelector('#guess-area') as HTMLDivElement;
 let guessBox = document.querySelector('#guess-box') as HTMLDivElement;
@@ -27,7 +30,7 @@ let alerta = document.querySelector('#clue') as HTMLLabelElement;
 // funções
 
 function genRandomNumber() {
-    random = Math.floor(Math.random()*100 + 1);
+    random = Math.floor(Math.random() * 100) + 1;
 }
 
 function isANumber(n:any) {
@@ -80,14 +83,18 @@ function guess() {
 }
 
 function handleStart() {
-
-    initial.style.display = 'none';
-    resultArea.style.display = 'none';
+    if(!(initial.style.display === 'none')) {
+        initial.style.display = 'none';
+        titleBox.style.display = 'none';
+        initialButtons.style.display = 'none';
+    } else if (!(resultArea.style.display = 'none')){
+        resultArea.style.display = 'none';
+        resultNumber.innerHTML = '';
+        titleRes.innerHTML = '';
+        msgRes.innerHTML = '';
+    }
+    
     alerta.classList.remove('alerta');
-    resultNumber.innerHTML = '';
-    titleRes.innerHTML = '';
-    msgRes.innerHTML = '';
-
     remainingAttWarning.innerHTML = `(Você tem ${totalAttempts} tentativas)`;
 
     guessBox.innerHTML = '';
@@ -102,8 +109,33 @@ function handleStart() {
     genRandomNumber();
 }
 
-submit.addEventListener('click', guess);
+function initialArea() {
+    // Exibe o título com uma transição de opacidade
+    titleBox.style.display = 'flex';
+    setTimeout(() => {
+        titleBox.style.opacity = '1';
+        // Após um curto intervalo, oculta o título gradualmente
+        setTimeout(() => {
+            titleBox.style.opacity = '0';
+            initialButtons.style.display = 'flex';
+            // Define a exibição dos botões iniciais apenas após o título ter desaparecido completamente
+            setTimeout(() => {
+                titleBox.style.display = 'none';
+                initialButtons.style.opacity = '1';
+            }, 2000);
+        }, 3000);
+    }, 2000);
+}
+
+window.addEventListener('load', initialArea);
 
 startButtons.forEach(button => {
-    button.addEventListener('click', handleStart)
-})
+    button.addEventListener('click', handleStart);
+});
+
+input.addEventListener('keyup', (e:KeyboardEvent)=> {
+   if(e.key.toLowerCase() === 'enter') {
+    guess();
+   }
+});
+submit.addEventListener('click', guess);
