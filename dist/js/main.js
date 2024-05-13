@@ -5,6 +5,9 @@ let currentGuess;
 let remainingAttWarning = document.querySelector('#remaining-attempts--warning');
 const totalAttempts = 10;
 let initial = document.querySelector('#initial');
+let initialButtonsArea = document.querySelector('#initial-buttons-area');
+let titleBox = document.querySelector('#title-box');
+let initialButtons = document.querySelector('#initial-buttons');
 let roundEl = document.querySelector('#round');
 let guessArea = document.querySelector('#guess-area');
 let guessBox = document.querySelector('#guess-box');
@@ -20,7 +23,7 @@ let numberCardGame = document.querySelector('.game-area .number');
 let startButtons = document.querySelectorAll('.start');
 let alerta = document.querySelector('#clue');
 function genRandomNumber() {
-    random = Math.floor(Math.random() * 100 + 1);
+    random = Math.floor(Math.random() * 100) + 1;
 }
 function isANumber(n) {
     return /^\d+$/.test(n);
@@ -36,7 +39,7 @@ function showResult(title, color, message) {
 }
 function guess() {
     currentGuess = parseInt(input.value);
-    if (currentGuess !== undefined && isANumber(currentGuess)) {
+    if (isANumber(currentGuess)) {
         if (currentGuess > 0 && currentGuess <= 100) {
             let guessP = document.createElement('p');
             guessP.classList.add('guess-number');
@@ -69,12 +72,18 @@ function guess() {
     }
 }
 function handleStart() {
-    initial.style.display = 'none';
-    resultArea.style.display = 'none';
+    if (!(initial.style.display === 'none')) {
+        initial.style.display = 'none';
+        titleBox.style.display = 'none';
+        initialButtons.style.display = 'none';
+    }
+    else if (!(resultArea.style.display = 'none')) {
+        resultArea.style.display = 'none';
+        resultNumber.innerHTML = '';
+        titleRes.innerHTML = '';
+        msgRes.innerHTML = '';
+    }
     alerta.classList.remove('alerta');
-    resultNumber.innerHTML = '';
-    titleRes.innerHTML = '';
-    msgRes.innerHTML = '';
     remainingAttWarning.innerHTML = `(Você tem ${totalAttempts} tentativas)`;
     guessBox.innerHTML = '';
     input.value = '';
@@ -85,7 +94,27 @@ function handleStart() {
     infoArea.style.display = 'flex';
     genRandomNumber();
 }
-submit.addEventListener('click', guess);
+function initialArea() {
+    titleBox.style.display = 'flex';
+    setTimeout(() => {
+        titleBox.style.opacity = '1';
+        setTimeout(() => {
+            titleBox.style.opacity = '0';
+            initialButtons.style.display = 'flex';
+            setTimeout(() => {
+                titleBox.style.display = 'none';
+                initialButtons.style.opacity = '1';
+            }, 2000);
+        }, 3000);
+    }, 2000);
+}
+window.addEventListener('load', initialArea);
 startButtons.forEach(button => {
     button.addEventListener('click', handleStart);
 });
+input.addEventListener('keyup', (e) => {
+    if (e.key.toLowerCase() === 'enter') {
+        guess();
+    }
+});
+submit.addEventListener('click', guess);

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+    <link rel="stylesheet" href="dist/css/global.css">
+</head>
+<body>
+    <div id="initial">
+        <div id="initial-buttons-area">
+            <div id="title-box">
+                <h1>Adivinhe o Número</h1>
+            </div>
+            <div id="initial-buttons">
+                <p id="press-start">Pressione Start</p>
+                <button class="start">Start</button>
+            </div>
+        </div>
+    </div>
+    <main class="general">
+        <div class="result-area">
+            <div class="result-box">
+                <div class="number-card">
+                    <div class="number">?</div>
+                </div>
+                <div id="title-res">...</div>
+                <div id="msg-res">...</div>
+                <button class="start">REINICIAR</button>
+            </div>
+        </div>
+        <div class="game-box">
+            <div class="game-area">
+                <div class="number-card">
+                    <div class="number">?</div>
+                </div>
+                <div id="input-number-area">
+                    <label id="clue" class="clue-default" for="input-number">
+                        <p>Digite um NÚMERO de 1 a 100</p>
+                        <p id="remaining-attempts--warning">(Você tem 10 tentativas)</p>
+                    </label>
+                    <div id="input-number-box">
+                        <input type="text" id="input-number" placeholder="000" maxlength="3">
+                        <div id="submit-area">
+                            <button class="start">Reiniciar</button>
+                            <input type="submit" value="confirmar" id="submit-number">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-area">
+                <div id="round">Tentativa x</div>
+                <div id="guess-title"><h3>Palpites</h3></div>
+                <div id="guess-area">
+                    <div id="guess-box"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div><p>Davi Codes</p></div>
+    </footer>
+    <script src="dist/js/main.js"></script>
+</body>
+</html>
