@@ -33,5 +33,6 @@ isANumber.
     • Se errado e não há mais tentativas, exibe uma mensagem de derrota.
 4. O jogador pode optar por reiniciar o jogo clicando no botão "Reiniciar".
 
-
+Acesse o site aqui:
+https://davihenriquelima.github.io/guess-the-number/
 
